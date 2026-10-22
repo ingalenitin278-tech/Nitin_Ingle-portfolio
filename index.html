@@ -4,532 +4,855 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nitin Ingle | Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#10110f">
+    <meta name="description"
+        content="Nitin Ingle is a web developer and data analyst creating useful, thoughtful digital experiences.">
+    <title>Nitin Ingle — Web Developer &amp; Data Analyst</title>
     <style>
+        :root {
+            color-scheme: dark;
+            --background: #10110f;
+            --surface: #191a17;
+            --surface-soft: #20211d;
+            --text: #f3f2eb;
+            --muted: #a4a69c;
+            --accent: #c5f467;
+            --line: rgba(243, 242, 235, 0.12);
+            --page-width: 1120px;
+        }
+
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 100px;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #05021f;
-            color: white;
+            margin: 0;
+            background:
+                radial-gradient(ellipse at 83% 8%, rgba(197, 244, 103, 0.07), transparent 28rem),
+                var(--background);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* NAVBAR */
+        a {
+            color: inherit;
+        }
 
-        header {
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 5px;
+        }
+
+        .shell {
+            width: min(var(--page-width), calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .site-header {
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 10;
+            border-bottom: 1px solid var(--line);
+            background: rgba(16, 17, 15, 0.88);
+            backdrop-filter: blur(16px);
         }
 
-        nav {
-            height: 85px;
+        .nav-bar {
+            min-height: 76px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
-            background: #14113f;
+            gap: 28px;
         }
 
-        .logo {
-            font-size: 26px;
-            font-weight: bold;
-        }
-
-        nav ul {
-            display: flex;
-            gap: 45px;
-            list-style: none;
-        }
-
-        nav ul li a {
-            color: white;
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
             text-decoration: none;
-            font-size: 18px;
-            transition: 0.3s;
+            white-space: nowrap;
         }
 
-        nav ul li a:hover {
-            color: #b36cff;
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: var(--accent);
+            color: var(--background);
+            font-size: 14px;
+            font-weight: 850;
         }
 
-
-        /* HOME */
-
-        .home {
-            min-height: 90vh;
+        .nav-links {
             display: flex;
             align-items: center;
-            justify-content: space-around;
-            padding: 80px 10%;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
-        .home-content {
-            max-width: 600px;
-        }
-
-        .home h1 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .home h1 span,
-        .section h1 span,
-        .typing {
-            color: #b36cff;
-        }
-
-        .home h2 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
-
-        .home p {
-            font-size: 18px;
-            line-height: 1.7;
-            margin: 20px 0;
-        }
-
-        .home-image img {
-            width: 500px;
-            max-width: 100%;
-        }
-
-
-        /* BUTTONS */
-
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            border: 2px solid white;
-            padding: 12px 20px;
-            border-radius: 6px;
-            color: white;
+        .nav-links a {
+            color: var(--muted);
+            font-size: 13px;
             text-decoration: none;
-            transition: 0.3s;
+            transition: color 160ms ease;
         }
 
-        .btn:hover {
-            background: #8e4dcc;
-            border-color: #8e4dcc;
+        .nav-links a:hover {
+            color: var(--accent);
         }
 
+        .nav-contact {
+            padding: 10px 15px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--text) !important;
+        }
 
-        /* GENERAL SECTIONS */
+        .nav-contact:hover {
+            border-color: var(--accent);
+        }
+
+        .hero {
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 56px;
+            padding-block: 88px 100px;
+        }
+
+        @keyframes fade-up {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes gentle-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+        }
+
+        @keyframes soft-pulse {
+
+            0%,
+            100% {
+                opacity: 0.65;
+                transform: scale(0.98);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.02);
+            }
+        }
+
+        .hero-content>* {
+            animation: fade-up 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+        }
+
+        .hero-content> :nth-child(2) {
+            animation-delay: 100ms;
+        }
+
+        .hero-content> :nth-child(3) {
+            animation-delay: 180ms;
+        }
+
+        .hero-content> :nth-child(4) {
+            animation-delay: 260ms;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 23px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 14px rgba(197, 244, 103, 0.7);
+            animation: soft-pulse 2.8s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            max-width: 700px;
+            margin: 0;
+            font-size: clamp(48px, 7.5vw, 88px);
+            font-weight: 650;
+            letter-spacing: -0.075em;
+            line-height: 0.99;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-copy {
+            max-width: 520px;
+            margin: 25px 0 0;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .button {
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 18px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 650;
+            text-decoration: none;
+            transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            border-color: rgba(197, 244, 103, 0.55);
+        }
+
+        .button-primary {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: var(--background);
+        }
+
+        .button-primary:hover {
+            background: #d2fa86;
+        }
+
+        .hero-visual {
+            position: relative;
+            width: min(100%, 390px);
+            aspect-ratio: 1 / 1;
+            justify-self: end;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 28px;
+            background:
+                radial-gradient(circle at 50% 43%, rgba(197, 244, 103, 0.16), transparent 54%),
+                var(--surface);
+            animation: fade-in 800ms ease-out both, gentle-float 6s ease-in-out 800ms infinite;
+        }
+
+        .hero-visual::before,
+        .hero-visual::after {
+            position: absolute;
+            content: "";
+            border: 1px solid rgba(197, 244, 103, 0.16);
+            border-radius: 50%;
+        }
+
+        .hero-visual::before {
+            width: 76%;
+            aspect-ratio: 1;
+        }
+
+        .hero-visual::after {
+            width: 92%;
+            aspect-ratio: 1;
+            animation: soft-pulse 7s ease-in-out infinite;
+        }
+
+        .hero-visual img {
+            position: relative;
+            z-index: 1;
+            width: 78%;
+            height: 78%;
+            object-fit: contain;
+            mix-blend-mode: screen;
+        }
+
+        .visual-label {
+            position: absolute;
+            z-index: 2;
+            right: 18px;
+            bottom: 18px;
+            padding: 9px 12px;
+            border: 1px solid var(--line);
+            border-radius: 7px;
+            background: rgba(16, 17, 15, 0.82);
+            color: var(--muted);
+            font-size: 11px;
+        }
 
         .section {
-            min-height: 100vh;
-            padding: 100px 10%;
-            text-align: center;
+            padding-block: 92px;
+            border-top: 1px solid var(--line);
         }
 
-        .section h1 {
-            font-size: 45px;
-            margin-bottom: 60px;
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 28px;
+            margin-bottom: 38px;
         }
 
+        .section-heading .eyebrow {
+            margin-bottom: 11px;
+        }
 
-        /* ABOUT */
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 600;
+            letter-spacing: -0.06em;
+            line-height: 1.1;
+        }
 
-        .about-content {
+        .section-heading>p {
+            max-width: 390px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            text-align: left;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 24px;
         }
 
-        .about-content h2 {
-            color: #b36cff;
-            margin-bottom: 20px;
+        .panel {
+            padding: 30px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.025), transparent 70%), var(--surface);
         }
 
-        .about-content p {
+        .panel h3 {
+            margin: 0 0 14px;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .panel p {
+            margin: 0 0 14px;
+            color: var(--muted);
+            font-size: 14px;
             line-height: 1.8;
-            margin-bottom: 20px;
+        }
+
+        .panel p:last-child {
+            margin-bottom: 0;
         }
 
         .skill-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .skill-list span {
-            padding: 12px 20px;
-            border: 1px solid #b36cff;
-            border-radius: 20px;
-        }
-
-
-        /* SERVICES */
-
-        .service-container,
-        .project-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-        }
-
-        .service-card,
-        .project-card {
-            padding: 35px;
-            background: #11103a;
-            border: 1px solid #373265;
-            border-radius: 15px;
-            transition: 0.3s;
-        }
-
-        .service-card:hover,
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: #b36cff;
-        }
-
-        .service-card h2,
-        .project-card h2 {
-            color: #b36cff;
-            margin-bottom: 20px;
-        }
-
-        .service-card p,
-        .project-card p {
-            line-height: 1.7;
-        }
-
-
-        /* PROJECTS */
-
-        .project-card a {
-            display: inline-block;
+            gap: 9px;
             margin-top: 20px;
-            color: #b36cff;
+        }
+
+        .skill-list span,
+        .project-tags span {
+            padding: 7px 11px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: #d5d6cd;
+            font-size: 11px;
+        }
+
+        .service-grid,
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .service-card {
+            min-height: 190px;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            background: var(--surface);
+            transition: transform 180ms ease, border-color 180ms ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(197, 244, 103, 0.42);
+        }
+
+        .card-number {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+
+        .service-card h3 {
+            margin: 0 0 9px;
+            font-size: 17px;
+            letter-spacing: -0.03em;
+        }
+
+        .service-card p {
+            max-width: 410px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        .project-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .project-card {
+            min-height: 255px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 25px;
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            background:
+                linear-gradient(155deg, rgba(197, 244, 103, 0.055), transparent 48%),
+                var(--surface);
+            transition: transform 180ms ease, border-color 180ms ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(197, 244, 103, 0.42);
+        }
+
+        .project-type {
+            margin-bottom: 28px;
+            color: var(--accent);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .project-card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            letter-spacing: -0.035em;
+        }
+
+        .project-card p {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: auto;
+        }
+
+        .project-tags span {
+            padding: 5px 9px;
+            font-size: 10px;
+        }
+
+        .contact-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 38px;
+            border: 1px solid rgba(197, 244, 103, 0.25);
+            border-radius: 16px;
+            background:
+                radial-gradient(ellipse at 90% 50%, rgba(197, 244, 103, 0.1), transparent 38%),
+                var(--surface);
+        }
+
+        .contact-panel .eyebrow {
+            margin-bottom: 12px;
+        }
+
+        .contact-panel h2 {
+            margin: 0 0 9px;
+            font-size: clamp(28px, 4vw, 42px);
+            letter-spacing: -0.06em;
+        }
+
+        .contact-panel p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .site-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-block: 26px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
             text-decoration: none;
         }
 
-
-        /* CONTACT */
-
-        .contact-text {
-            margin-bottom: 30px;
-            font-size: 18px;
+        .footer-links a:hover {
+            color: var(--accent);
         }
 
-        form {
-            max-width: 650px;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        form input,
-        form textarea {
-            padding: 15px;
-            border: 1px solid #555;
-            border-radius: 8px;
-            background: #11103a;
-            color: white;
-            font-size: 16px;
-        }
-
-        form button {
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            background: #8e4dcc;
-            color: white;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        form button:hover {
-            background: #b36cff;
-        }
-
-        .contact-info {
-            margin-top: 35px;
-            line-height: 2;
-        }
-
-
-        /* FOOTER */
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #14113f;
-        }
-
-
-        /* MOBILE */
-
-        @media (max-width: 768px) {
-
-            nav {
-                padding: 0 15px;
+        @media (max-width: 760px) {
+            .shell {
+                width: min(100% - 36px, var(--page-width));
             }
 
-            nav ul {
-                gap: 12px;
-            }
-
-            nav ul li a {
-                font-size: 14px;
-            }
-
-            .home {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .home h1 {
-                font-size: 36px;
-            }
-
-            .home h2 {
-                font-size: 28px;
-            }
-
-            .buttons {
-                justify-content: center;
+            .nav-bar {
+                min-height: 68px;
                 flex-wrap: wrap;
+                gap: 10px 18px;
+                padding-block: 13px;
             }
 
-            .about-content,
-            .service-container,
-            .project-container {
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 12px;
+                overflow-x: auto;
+                padding-bottom: 2px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .nav-contact {
+                padding: 0;
+                border: 0;
+            }
+
+            .hero {
+                min-height: auto;
                 grid-template-columns: 1fr;
+                gap: 45px;
+                padding-block: 76px;
+            }
+
+            .hero-visual {
+                width: min(100%, 350px);
+                justify-self: center;
             }
 
             .section {
-                padding: 80px 6%;
+                padding-block: 72px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero {
+                padding-block: 62px;
+            }
+
+            .hero-copy {
+                font-size: 15px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .service-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                min-height: auto;
+            }
+
+            .card-number {
+                margin-bottom: 18px;
+            }
+
+            .contact-panel {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 27px;
+            }
+
+            .site-footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation: none !important;
             }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="logo">Nitin Ingle Portfolio</div>
-
-            <ul>
-                <li><a href="#home">Home</a></li>
+    <header class="site-header">
+        <nav class="nav-bar shell" aria-label="Main navigation">
+            <a class="brand" href="#home" aria-label="Nitin Ingle, home">
+                <span class="brand-mark" aria-hidden="true">N</span>
+                <span>Nitin Ingle</span>
+            </a>
+            <ul class="nav-links">
                 <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
+                <li><a href="#services">What I do</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact Me</a></li>
+                <li><a class="nav-contact" href="#contact">Let's talk <span aria-hidden="true">↗</span></a></li>
             </ul>
         </nav>
     </header>
 
-
-    <!-- HOME -->
-    <section id="home" class="home">
-
-        <div class="home-content">
-            <h1>Hi, My name is <span>Nitin</span></h1>
-
-            <h2>and I am a passionate</h2>
-
-            <h2 class="typing">Web Developer And Data Analyst</h2>
-
-            <p>
-                I create modern, responsive and user-friendly websites
-                using modern web technologies.
-            </p>
-
-            <div class="buttons">
-                <a href="resume.pdf" class="btn">View Resume</a>
-                <a href="https://github.com/ingalenitin278-tech" class="btn">Visit Github</a>
-                <a href="https://www.linkedin.com/in/nitiningle278" class="btn">LinkedIn</a>
-            </div>
-        </div>
-
-        <div class="home-image">
-            <img src="developer.png" alt="Developer">
-        </div>
-
-    </section>
-
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-
-        <h1>About <span>Me</span></h1>
-
-        <div class="about-content">
-
-            <div>
-                <h2>Who I Am</h2>
-
-                <p>
-                    I am Nitin Ingle, a Computer Science Engineering student
-                    passionate about software development, web development
-                    and emerging technologies.
+    <main>
+        <section class="hero shell" id="home">
+            <div class="hero-content">
+                <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> CSE student · Web developer ·
+                    Data analyst</p>
+                <h1>I’m Nitin,<br><span>a CSE student</span><br>building for the web.</h1>
+                <p class="hero-copy">
+                    Hey, I’m Nitin — a Computer Science Engineering student who enjoys turning ideas into clear,
+                    user-friendly digital experiences and practical data solutions.
                 </p>
-
-                <p>
-                    I enjoy creating practical projects and learning new
-                    technologies. My goal is to build efficient and
-                    user-friendly digital solutions.
-                </p>
-            </div>
-
-            <div class="skills">
-                <h2>My Skills</h2>
-
-                <div class="skill-list">
-                    <span>Java Script</span>
-                    <span>Python</span>
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>Excel</span>
-                    <span>Power BI</span>
-                    <span>SQL</span>
-                    <span>Git & GitHub</span>
-                    <span>VS Code</span>
-
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#projects">Explore my work <span
+                            aria-hidden="true">↘</span></a>
+                    <a class="button" href="resume.pdf" target="_blank" rel="noopener noreferrer">View resume <span
+                            aria-hidden="true">↗</span></a>
                 </div>
             </div>
+            <div class="hero-visual">
+                <img src="developer.png" alt="Illustration of a developer working at a laptop">
+                <span class="visual-label">Curious by nature. Building by design.</span>
+            </div>
+        </section>
 
+        <section class="section" id="about">
+            <div class="shell">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">A little about me</p>
+                        <h2>Good work starts<br>with curiosity.</h2>
+                    </div>
+                    <p>I’m focused on creating thoughtful digital experiences, learning by building, and making
+                        technology useful.</p>
+                </div>
+                <div class="about-grid">
+                    <article class="panel">
+                        <h3>Who I am</h3>
+                        <p>
+                            I’m Nitin Ingle, a Computer Science Engineering student from Sambhajinager, Maharashtra. I’m
+                            passionate about software development, web development, and emerging technologies.
+                        </p>
+                        <p>
+                            I enjoy taking on practical projects, exploring how things work, and growing my skills
+                            through hands-on experience.
+                        </p>
+                    </article>
+                    <article class="panel">
+                        <h3>Tools I work with</h3>
+                        <p>A growing toolkit for building on the web and working with data.</p>
+                        <div class="skill-list" aria-label="Skills">
+                            <span>JavaScript</span>
+                            <span>Python</span>
+                            <span>C++</span>
+                            <span>Node.js</span>
+                            <span>React</span>
+                            <span>HTML &amp; CSS</span>
+                            <span>SQL</span>
+                            <span>Excel</span>
+                            <span>Power BI</span>
+                            <span>Git &amp; GitHub</span>
+                            <span>VS Code</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="services">
+            <div class="shell">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">How I can help</p>
+                        <h2>Things I love to build.</h2>
+                    </div>
+                    <p>From a thoughtful first screen to the data behind it, I like making every part feel purposeful.
+                    </p>
+                </div>
+                <div class="service-grid">
+                    <article class="service-card">
+                        <span class="card-number">01 / WEB</span>
+                        <h3>Web Developer</h3>
+                        <p>Responsive, accessible websites that feel considered and work smoothly across screens.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="card-number">02 / BUILD</span>
+                        <h3>Full-stack development</h3>
+                        <p>Connecting interfaces, application logic, and databases to shape complete web experiences.
+                        </p>
+                    </article>
+                    <article class="service-card">
+                        <span class="card-number">03 / DESIGN</span>
+                        <h3>UI/UX design</h3>
+                        <p>Clean layouts and intuitive interactions that help people get where they need to go.</p>
+                    </article>
+                    <article class="service-card">
+                        <span class="card-number">04 / DATA</span>
+                        <h3>Data Analysis</h3>
+                        <p>Exploring and organizing data with tools like SQL, Excel, and Power BI to find useful
+                            insights.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="shell">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Projects and Work</p>
+                        <h2>Ideas turned into projects.</h2>
+                    </div>
+                    <p>A few areas I’ve explored through personal and academic project work.</p>
+                </div>
+                <div class="project-grid">
+                    <article class="project-card">
+                        <span class="project-type">AI Landslide Risk Monitoring</span>
+                        <h3>Landslide Monitoring System</h3>
+                        <p>An AI-based concept for identifying landslide risks and helping provide early warnings.</p>
+                        <div class="project-tags"><span>AI</span><span>Monitoring</span><span>Safety</span></div>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-type">Personal Portfolio</span>
+                        <h3>Personal Portfolio</h3>
+                        <p>A home for my work, interests, and continued journey in development and data.</p>
+                        <div class="project-tags"><span>HTML</span><span>CSS</span><span>Responsive</span></div>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-type">Robotics and Drones</span>
+                        <h3>Robotics &amp; Drones</h3>
+                        <p>Exploring how automation and smart technology can help complete tasks with precision.</p>
+                        <div class="project-tags"><span>Robotics</span><span>Automation</span></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="shell">
+                <div class="contact-panel">
+                    <div>
+                        <p class="eyebrow">Have an idea?</p>
+                        <h2>Let’s make it happen.</h2>
+                        <p>Have a project, opportunity, or just want to say hello? My inbox is open.</p>
+                    </div>
+                    <a class="button button-primary" href="mailto:ingalenitin278@gmail.com">
+                        Get in touch <span aria-hidden="true">↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer shell">
+        <span>© 2026 Nitin Ingle. All Rights Reserved.</span>
+        <div class="footer-links">
+            <a href="mailto:ingalenitin278@gmail.com">Email</a>
+            <a href="https://github.com/ingalenitin278-tech" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/in/nitiningle278" target="_blank" rel="noopener noreferrer">Linkedin</a>
         </div>
-
-    </section>
-
-
-    <!-- SERVICES -->
-    <section id="services" class="section">
-
-        <h1>My <span>Services</span></h1>
-
-        <div class="service-container">
-
-            <div class="service-card">
-                <h2>🌐 Web Development</h2>
-                <p>
-                    I create responsive and modern websites using
-                    HTML, CSS and JavaScript.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h2>💻 Full Stack Development</h2>
-                <p>
-                    I develop complete web applications with frontend,
-                    backend and database technologies.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h2>🎨 UI Design</h2>
-                <p>
-                    I design clean, attractive and user-friendly
-                    interfaces for web applications.
-                </p>
-            </div>
-
-            <div class="service-card">
-                <h2>📊 Data Analysis</h2>
-                <p>
-                    I work with programming, SQL and data-related
-                    applications to solve practical problems.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-
-        <h1>My <span>Projects</span></h1>
-
-        <div class="project-container">
-
-            <div class="project-card">
-                <h2>AI Landslide Monitoring System</h2>
-                <p>
-                    AI-based system to detect landslide risks and provide early warnings to protect lives and property.
-                </p>
-                <a href="#">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <h2>Personal Portfolio</h2>
-                <p>
-                    My personal portfolio website showcasing my skills,
-                    projects and experience.
-                </p>
-                <a href="#">View Project</a>
-            </div>
-
-            <div class="project-card">
-                <h2>Robotics & Drones</h2>
-                <p>
-                    Robotics and drones use automation and smart technology to perfrom tasks efficiently and accurately.
-                </p>
-                <a href="#">View Project</a>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-    <section id="contact" class="section contact">
-
-        <h1>Contact <span>Me</span></h1>
-
-        <p class="contact-text">
-            Have a project or opportunity? Feel free to contact me.
-        </p>
-
-        <form>
-
-            <input type="text" placeholder="Your Name" required>
-
-            <input type="email" placeholder="Your Email" required>
-
-            <input type="text" placeholder="Subject">
-
-            <textarea rows="6" placeholder="Your Message"></textarea>
-
-            <button type="submit">Send Message</button>
-
-        </form>
-
-        <div class="contact-info">
-            <p>📧 ingalenitin278@gmail.com</p>
-            <p>📍 Jalna, Maharashtra</p>
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 Nitin Ingle. All Rights Reserved.</p>
     </footer>
-
 </body>
 
 </html>
